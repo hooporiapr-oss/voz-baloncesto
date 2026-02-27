@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Voz — Puerto Rico Basketball</title>
+  <meta name="description" content="La Voz of Puerto Rico Basketball. Your bilingual guide to everything basketball on the island — from mini-basket to the national team, youth leagues to masters, history to today's scores.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --deep: #0c0a06;
+      --surface: #151208;
+      --card: #1c1810;
+      --gold: #D4A017;
+      --gold-light: #F5D060;
+      --amber: #C4872A;
+      --cream: #F0E6D0;
+      --muted: #9A8E78;
+      --gradient-gold: linear-gradient(135deg, #D4A017, #F5D060);
+      --radius: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--deep);
+      color: var(--cream);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* === BACKGROUND === */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(212,160,23,.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 100%, rgba(196,135,42,.04) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* === GLOW ORBS === */
+    .glow-orb {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(160px);
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow-orb.gold { background: var(--gold); top: -150px; left: 50%; transform: translateX(-50%); }
+    .glow-orb.amber { background: var(--amber); bottom: -200px; right: -100px; opacity: 0.07; }
+
+    /* === HERO === */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px;
+    }
+
+    .hero-image {
+      width: 280px;
+      max-width: 70%;
+      border-radius: 20px;
+      margin-bottom: 36px;
+      animation: fadeInDown .8s ease;
+      filter: drop-shadow(0 0 40px rgba(212,160,23,.3));
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 8vw, 72px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      animation: fadeInUp .6s ease .2s both;
+    }
+    .hero-title .gold {
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(14px, 3vw, 20px);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 36px;
+      font-weight: 400;
+      animation: fadeInUp .6s ease .3s both;
+    }
+
+    .hero-desc {
+      max-width: 580px;
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 48px;
+      animation: fadeInUp .6s ease .4s both;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      border-radius: 50px;
+      background: rgba(212,160,23,.08);
+      border: 1px solid rgba(212,160,23,.15);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      animation: fadeInUp .6s ease .1s both;
+    }
+    .badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ADE80;
+      box-shadow: 0 0 8px #4ADE80;
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .4; }
+    }
+
+    /* === FEATURES === */
+    .features {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px 24px 100px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      padding: 32px 28px;
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid rgba(212,160,23,.06);
+      transition: all .3s ease;
+    }
+    .feature-card:hover {
+      border-color: rgba(212,160,23,.15);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+      background: rgba(212,160,23,.08);
+    }
+
+    .feature-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--cream);
+    }
+    .feature-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* === FOOTER === */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid rgba(212,160,23,.06);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* === ELEVENLABS WIDGET === */
+    elevenlabs-convai {
+      position: fixed !important;
+      bottom: 24px !important;
+      right: 24px !important;
+      left: auto !important;
+      top: auto !important;
+      z-index: 999 !important;
+    }
+
+    /* === ANIMATIONS === */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 600px) {
+      .hero { padding: 40px 20px; }
+      .hero-image { width: 220px; }
+      .hero-desc { font-size: 15px; }
+      .features { padding: 20px 20px 80px; }
+      .feature-card { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow-orb gold"></div>
+  <div class="glow-orb amber"></div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <img src="lavoz-logo.png" alt="La Voz of Puerto Rico Basketball" class="hero-image">
+    <div class="badge">Voice Agent — Live</div>
+    <h1 class="hero-title"><span class="gold">La Voz</span></h1>
+    <p class="hero-subtitle">Puerto Rico Basketball</p>
+    <p class="hero-desc">
+      Your bilingual guide to everything basketball on the island. From mini-basket to the national team, youth leagues to masters, history to today's scores and results. Tu guía pa' todo el baloncesto en la isla.
+    </p>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="feature-card">
+      <div class="feature-icon">🏀</div>
+      <div class="feature-title">Every Level</div>
+      <p class="feature-text">Mini-basket, juvenil, high school, LAI university, BSN, Selección Nacional, masters — men's and women's. All covered.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📖</div>
+      <div class="feature-title">Deep History</div>
+      <p class="feature-text">The NewYoRican Connection, legendary players, iconic moments, and the story of how Puerto Rico became a basketball powerhouse.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <div class="feature-title">Live Results</div>
+      <p class="feature-text">Upcoming tournaments, scores, schedules, and results across every level of Puerto Rico basketball. Always current.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div>La Voz del Baloncesto de Puerto Rico 🇵🇷</div>
+  </footer>
+
+  <!-- ElevenLabs Voice Widget -->
+  <elevenlabs-convai agent-id="agent_0301kjgnqd9jf33s3dr03n3cwxjh"></elevenlabs-convai>
+  <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+
+</body>
+</html>
